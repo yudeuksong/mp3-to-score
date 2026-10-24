@@ -1,0 +1,23 @@
+# Python 3.11 전용 (Basic Pitch 0.4.0은 Python 3.7~3.11 지원; 3.13에서는 설치 실패 사례가 있음)
+# basic-pitch 자체는 TensorFlow 강제 설치를 피하려고 setup 스크립트에서 --no-deps로 따로 설치한다:
+#   pip install --no-deps basic-pitch==0.4.0
+# 전체 의존성 고정본은 requirements-lock.txt 참고.
+numpy==1.26.4
+scipy==1.17.1
+scikit-learn==1.9.1
+librosa==0.11.0
+soundfile==0.14.0
+audioread==3.1.0
+resampy==0.4.2
+setuptools==80.10.2   # resampy가 pkg_resources를 사용 (setuptools<81 필요)
+mir-eval==0.8.2
+pretty-midi==0.2.11.post0
+typing-extensions==4.16.0
+onnxruntime==1.31.0   # Basic Pitch ONNX 모델 실행 (Windows/Linux/macOS 공통)
+music21==10.5.1
+fastapi==0.162.0
+uvicorn==0.54.0
+python-multipart==0.0.32
+# 테스트용
+pytest==9.1.1
+httpx==0.28.1

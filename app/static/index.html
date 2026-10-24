@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MP3 피아노 악보 변환기</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="no-print">
+  <h1>MP3 → 피아노 악보</h1>
+  <p class="sub">내 컴퓨터에서만 처리됩니다 · 파일을 외부 서비스로 보내지 않습니다 · 엔진: <span id="engine-status">확인 중…</span></p>
+</header>
+
+<main>
+  <section class="card no-print" id="input-card">
+    <h2>1. 음원 선택</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept=".mp3,.wav,.flac,.ogg,.m4a,audio/*">
+      <span id="drop-text">MP3/WAV 파일을 끌어 놓거나 클릭해서 선택하세요 (최대 <span id="max-mb">50</span>MB, <span id="max-min">10</span>분)</span>
+    </label>
+    <audio id="player" controls hidden></audio>
+
+    <h2>2. 음원 종류</h2>
+    <div class="modes" role="radiogroup">
+      <label><input type="radio" name="source_mode" value="piano" checked>
+        <b>피아노/단일 악기 (다성음)</b><small>지원 수준: 좋음 — Basic Pitch가 가장 잘 동작하는 경우</small></label>
+      <label><input type="radio" name="source_mode" value="melody">
+        <b>단선율 (멜로디 한 줄)</b><small>지원 수준: 좋음 — 가장 높은 음만 남겨 한 줄로 만듦</small></label>
+      <label><input type="radio" name="source_mode" value="mixed">
+        <b>보컬+반주 혼합곡</b><small>지원 수준: 실험적 — 보컬 선율을 정확히 뽑지 못합니다. 참고용 초안</small></label>
+    </div>
+
+    <details open>
+      <summary>3. 세부 설정</summary>
+      <div class="grid">
+        <label>엔진
+          <select id="engine">
+            <option value="auto">자동 (Basic Pitch 우선)</option>
+            <option value="basicpitch">Basic Pitch (다성음)</option>
+            <option value="yin">YIN (단선율 실험용)</option>
+          </select></label>
+        <label>BPM <small>(0 = 자동 추정)</small>
+          <input type="number" id="bpm" value="0" min="0" max="260" step="1"></label>
+        <label>박자표
+          <select id="time_signature">
+            <option>4/4</option><option>3/4</option><option>2/4</option><option>6/8</option><option>12/8</option>
+          </select></label>
+        <label>양자화 단위
+          <select id="grid">
+            <option value="1">4분음표</option>
+            <option value="2">8분음표</option>
+            <option value="3">셋잇단 8분음표</option>
+            <option value="4" selected>16분음표</option>
+          </select></label>
+        <label>최소 음 길이 (ms)
+          <input type="number" id="min_note_ms" value="100" min="10" max="2000" step="10"></label>
+        <label>최저음 <output id="min_pitch_name"></output>
+          <input type="number" id="min_pitch" value="21" min="0" max="127"></label>
+        <label>최고음 <output id="max_pitch_name"></output>
+          <input type="number" id="max_pitch" value="108" min="0" max="127"></label>
+        <label>왼손/오른손 분할음 <output id="split_pitch_name"></output>
+          <input type="number" id="split_pitch" value="60" min="0" max="127"></label>
+        <label>음 시작 감도 <small>(onset, 낮을수록 많이 검출)</small>
+          <input type="number" id="onset_threshold" value="0.5" min="0.05" max="0.95" step="0.05"></label>
+        <label>음 지속 감도 <small>(frame)</small>
+          <input type="number" id="frame_threshold" value="0.3" min="0.05" max="0.95" step="0.05"></label>
+        <label>시작 위치 (초)
+          <input type="number" id="start" value="0" min="0" step="1"></label>
+        <label>분석 길이 (초) <small>(0 = 끝까지)</small>
+          <input type="number" id="length" value="0" min="0" step="1"></label>
+        <label class="check"><span><input type="checkbox" id="suppress_harmonics" checked> 배음 유령음 제거</span>
+          <small>기본음과 동시에 시작하는 훨씬 약한 옥타브/배음 위치 음을 지웁니다(휴리스틱)</small></label>
+      </div>
+      <p class="note">왼손/오른손 분리는 <b>음역 기반 휴리스틱</b>입니다: 분할음 이상은 오른손(높은음자리표), 미만은 왼손(낮은음자리표). 실제 운지와 다를 수 있습니다.</p>
+    </details>
+
+    <button id="go" disabled>악보로 변환</button>
+    <div id="progress" hidden>
+      <div class="bar"><div id="bar-fill"></div></div>
+      <span id="stage">대기 중</span>
+    </div>
+    <div id="error" class="error" role="alert" hidden></div>
+  </section>
+
+  <section class="card" id="result" hidden>
+    <div class="no-print">
+      <h2>4. 결과</h2>
+      <dl id="summary"></dl>
+      <ul id="warnings" class="warnings"></ul>
+      <div class="downloads" id="downloads"></div>
+      <p id="pdf-msg" class="note"></p>
+      <div class="zoom">악보 크기
+        <button data-zoom="-0.1" type="button">−</button>
+        <button data-zoom="0.1" type="button">＋</button>
+      </div>
+    </div>
+    <div id="score"></div>
+  </section>
+
+  <section class="card no-print">
+    <h2>지원 범위와 한계</h2>
+    <table>
+      <thead><tr><th>음원</th><th>지원 수준</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td>단선율 (피아노 한 손, 플루트, 허밍 등)</td><td>좋음</td><td>음높이는 대체로 정확. 박자는 BPM 설정과 양자화에 크게 좌우됨</td></tr>
+        <tr><td>피아노 다성음 (화음, 양손)</td><td>보통</td><td>화음 음 일부 누락/추가 가능. 페달·잔향이 많으면 정확도 저하</td></tr>
+        <tr><td>보컬+반주 혼합곡 (찬양, 가요 등)</td><td>실험적</td><td>음원 분리를 하지 않으므로 반주·배음이 섞여 나옵니다. 보컬 선율 정확 추출은 약속하지 않습니다</td></tr>
+      </tbody>
+    </table>
+    <p class="note">자동 채보 결과는 초안입니다. MusicXML을 MuseScore 등에서 열어 반드시 검토·수정하세요.</p>
+  </section>
+</main>
+
+<script src="vendor/opensheetmusicdisplay.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

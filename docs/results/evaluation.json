@@ -1,0 +1,372 @@
+[
+  {
+    "case": "단선율(C장조 16음, 120BPM)",
+    "input": "WAV",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.64,
+      "recall": 1.0,
+      "f1": 0.78,
+      "ref": 16,
+      "est": 25,
+      "onset_mae_ms": 4.8
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 4.8
+    },
+    "score_grid": {
+      "expected": 16,
+      "produced": 16,
+      "matched": 16,
+      "precision": 1.0,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 120,
+    "bpm_auto": 117.45,
+    "infer_sec": 0.38,
+    "audio_sec": 8.47
+  },
+  {
+    "case": "단선율(C장조 16음, 120BPM)",
+    "input": "MP3 192k",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.64,
+      "recall": 1.0,
+      "f1": 0.78,
+      "ref": 16,
+      "est": 25,
+      "onset_mae_ms": 4.6
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 4.6
+    },
+    "score_grid": {
+      "expected": 16,
+      "produced": 16,
+      "matched": 16,
+      "precision": 1.0,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 120,
+    "bpm_auto": 117.45,
+    "infer_sec": 0.15,
+    "audio_sec": 8.47
+  },
+  {
+    "case": "단선율(C장조 16음, 120BPM)",
+    "input": "WAV+잡음 SNR20dB",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 5.1
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 5.1
+    },
+    "score_grid": {
+      "expected": 16,
+      "produced": 16,
+      "matched": 16,
+      "precision": 1.0,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 120,
+    "bpm_auto": 123.05,
+    "infer_sec": 0.13,
+    "audio_sec": 8.47
+  },
+  {
+    "case": "단선율(C장조 16음, 120BPM)",
+    "input": "MP3 192k",
+    "engine": "yin",
+    "raw": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 2.8
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 2.8
+    },
+    "bpm_true": 120
+  },
+  {
+    "case": "화음(I-IV-V-I 3화음+베이스, 120BPM)",
+    "input": "WAV",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.667,
+      "recall": 1.0,
+      "f1": 0.8,
+      "ref": 16,
+      "est": 24,
+      "onset_mae_ms": 6.0
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 6.0
+    },
+    "score_grid": {
+      "expected": 16,
+      "produced": 16,
+      "matched": 16,
+      "precision": 1.0,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 120,
+    "bpm_auto": 120.19,
+    "infer_sec": 0.08,
+    "audio_sec": 4.45
+  },
+  {
+    "case": "화음(I-IV-V-I 3화음+베이스, 120BPM)",
+    "input": "MP3 192k",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.696,
+      "recall": 1.0,
+      "f1": 0.821,
+      "ref": 16,
+      "est": 23,
+      "onset_mae_ms": 6.0
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 16,
+      "est": 16,
+      "onset_mae_ms": 6.0
+    },
+    "score_grid": {
+      "expected": 16,
+      "produced": 16,
+      "matched": 16,
+      "precision": 1.0,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 120,
+    "bpm_auto": 120.19,
+    "infer_sec": 0.07,
+    "audio_sec": 4.45
+  },
+  {
+    "case": "화음(I-IV-V-I 3화음+베이스, 120BPM)",
+    "input": "WAV+잡음 SNR20dB",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.941,
+      "recall": 1.0,
+      "f1": 0.97,
+      "ref": 16,
+      "est": 17,
+      "onset_mae_ms": 4.6
+    },
+    "post": {
+      "precision": 0.941,
+      "recall": 1.0,
+      "f1": 0.97,
+      "ref": 16,
+      "est": 17,
+      "onset_mae_ms": 4.6
+    },
+    "score_grid": {
+      "expected": 16,
+      "produced": 17,
+      "matched": 16,
+      "precision": 0.941,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 120,
+    "bpm_auto": 120.19,
+    "infer_sec": 0.08,
+    "audio_sec": 4.45
+  },
+  {
+    "case": "화음(I-IV-V-I 3화음+베이스, 120BPM)",
+    "input": "WAV",
+    "engine": "yin",
+    "raw": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "ref": 16,
+      "est": 4,
+      "onset_mae_ms": null
+    },
+    "post": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "ref": 16,
+      "est": 4,
+      "onset_mae_ms": null
+    },
+    "bpm_true": 120
+  },
+  {
+    "case": "양손(8분음표 멜로디+2분음표 베이스, 100BPM)",
+    "input": "WAV",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.69,
+      "recall": 1.0,
+      "f1": 0.816,
+      "ref": 20,
+      "est": 29,
+      "onset_mae_ms": 5.8
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 20,
+      "est": 20,
+      "onset_mae_ms": 5.8
+    },
+    "score_grid": {
+      "expected": 20,
+      "produced": 20,
+      "matched": 20,
+      "precision": 1.0,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 100,
+    "bpm_auto": 107.67,
+    "infer_sec": 0.09,
+    "audio_sec": 5.27
+  },
+  {
+    "case": "양손(8분음표 멜로디+2분음표 베이스, 100BPM)",
+    "input": "MP3 192k",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.667,
+      "recall": 1.0,
+      "f1": 0.8,
+      "ref": 20,
+      "est": 30,
+      "onset_mae_ms": 5.8
+    },
+    "post": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "ref": 20,
+      "est": 20,
+      "onset_mae_ms": 5.8
+    },
+    "score_grid": {
+      "expected": 20,
+      "produced": 20,
+      "matched": 20,
+      "precision": 1.0,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 100,
+    "bpm_auto": 107.67,
+    "infer_sec": 0.1,
+    "audio_sec": 5.27
+  },
+  {
+    "case": "양손(8분음표 멜로디+2분음표 베이스, 100BPM)",
+    "input": "WAV+잡음 SNR20dB",
+    "engine": "basicpitch",
+    "raw": {
+      "precision": 0.87,
+      "recall": 1.0,
+      "f1": 0.93,
+      "ref": 20,
+      "est": 23,
+      "onset_mae_ms": 6.4
+    },
+    "post": {
+      "precision": 0.952,
+      "recall": 1.0,
+      "f1": 0.976,
+      "ref": 20,
+      "est": 21,
+      "onset_mae_ms": 6.4
+    },
+    "score_grid": {
+      "expected": 20,
+      "produced": 21,
+      "matched": 20,
+      "precision": 0.952,
+      "recall": 1.0,
+      "t0": 0.0
+    },
+    "bpm_true": 100,
+    "bpm_auto": 99.38,
+    "infer_sec": 0.1,
+    "audio_sec": 5.27
+  },
+  {
+    "case": "혼합(비브라토 보컬 대용+피아노 반주, 100BPM)",
+    "input": "WAV",
+    "engine": "basicpitch",
+    "raw_all_vs_melody+acc": {
+      "precision": 0.828,
+      "recall": 1.0,
+      "f1": 0.906,
+      "ref": 48,
+      "est": 58,
+      "onset_mae_ms": 6.3
+    },
+    "mixed_mode_melody": {
+      "precision": 0.625,
+      "recall": 0.833,
+      "f1": 0.714,
+      "ref": 12,
+      "est": 16,
+      "onset_mae_ms": 5.9
+    },
+    "score_grid_melody": {
+      "expected": 12,
+      "produced": 16,
+      "matched": 10,
+      "precision": 0.625,
+      "recall": 0.833,
+      "t0": 0.0
+    }
+  }
+]
