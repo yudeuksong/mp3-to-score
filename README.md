@@ -6,6 +6,17 @@ MP3/WAV 음원을 **내 컴퓨터 안에서** 피아노 악보(MusicXML·MIDI·P
 
 > 자동 채보 결과는 **초안**입니다. MusicXML을 MuseScore 같은 악보 프로그램에서 열어 꼭 검토·수정하세요.
 
+## 다운로드
+
+**[⬇ mp3-to-score-v0.1.0.zip 내려받기](https://github.com/yudeuksong/mp3-to-score/releases/download/v0.1.0/mp3-to-score-v0.1.0.zip)** (약 413KB) · [릴리스 페이지](https://github.com/yudeuksong/mp3-to-score/releases/tag/v0.1.0) · [모든 릴리스](https://github.com/yudeuksong/mp3-to-score/releases)
+
+- 압축을 푼 뒤 아래 [설치](#설치) 안내를 따르세요. 실행하려면 **Python 3.11**이 필요합니다(ZIP에는 Python과 Basic Pitch 모델이 들어 있지 않으며, 설치 스크립트가 PyPI에서 받습니다).
+- 파일 무결성 확인(SHA-256):
+  `2e2bf908cb0ea02677b63a0980137b236b2e22bee4655d7b5b44bfd54e9e3fad`
+  - Windows: `certutil -hashfile mp3-to-score-v0.1.0.zip SHA256`
+  - macOS/Linux: `shasum -a 256 mp3-to-score-v0.1.0.zip`
+- 개발 버전을 쓰려면 저장소를 직접 받습니다: `git clone https://github.com/yudeuksong/mp3-to-score.git`
+
 ## 지원 범위
 
 | 음원 종류 | 지원 수준 | 설명 |
@@ -26,11 +37,12 @@ MP3/WAV 음원을 **내 컴퓨터 안에서** 피아노 악보(MusicXML·MIDI·P
 ### Windows
 1. https://www.python.org/downloads/ 에서 **Python 3.11.x**를 설치합니다("py launcher" 옵션 포함).
 2. (권장) ffmpeg 설치: `winget install Gyan.FFmpeg`. 없어도 WAV는 동작하며, MP3도 대부분 동작합니다.
-3. 압축을 푼 폴더에서 `setup_windows.bat`을 더블클릭합니다.
+3. [ZIP을 내려받아](#다운로드) 압축을 풀고, 그 폴더에서 `setup_windows.bat`을 더블클릭합니다.
 4. `run_windows.bat`을 더블클릭하면 브라우저에 http://127.0.0.1:8765/ 가 열립니다.
 
 ### Linux / macOS
 ```bash
+unzip mp3-to-score-v0.1.0.zip && cd mp3-to-score
 ./setup.sh          # python3.11 이 PATH에 있어야 함 (PYTHON=경로 로 지정 가능)
 ./run.sh            # http://127.0.0.1:8765/
 ```
